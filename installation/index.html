@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Belajar Vue JS</title>
+</head>
+<body>
+
+    <div id="vueApp">
+        <input type="text" v-model="subject">
+
+        <h3>Belajar {{ subject }} </h3>
+        <p>belajar Vue JS di sekolah koding</p>
+        <p>Number: {{ number }}</p>
+
+        <!--
+            menggunakan method click pada vue js
+            dapat juga menggunakan v-on:click
+        -->
+        <button @click="makeItFun()">Make it fun</button>
+        <button @click="check()">Check subject</button>
+
+        <p>Nilai: {{ score }}</p>
+    </div>
+
+
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>  
+    <script>
+        const sample = {
+            data() {
+                return {
+                    subject: 'VueJS',
+                    number: 0,
+                    score: 0
+                }
+            },
+            mounted() {
+                setInterval(() => {
+                    this.number++
+                }, 500);
+            },
+            methods: {
+                makeItFun() {
+                    this.subject = this.subject + ' !!!';
+                },
+
+                check() {
+                    if(this.subject === 'VueJS') {
+                        this.score = 100;
+                    } else {
+                        this.score = -50;
+                    }
+                }
+            }
+        }
+
+        Vue.createApp(sample).mount('#vueApp')
+        // fungsi mount seperti meletakkan fungsi dan data yang sudah dibuat ke lement HTML
+        // contohnya di atas sudah dibuat variabel sample yang berisi data dan fingsi javascript
+        // ketika sample sudah di-mounte
+        // maka akan menjalankan fungsi mounted
+    </script>
+</body>
+</html>
