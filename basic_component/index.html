@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basic Component Vue</title>
+</head>
+
+<body>
+    <div id="vueApp">
+        <h3>Belajar Vue</h3>
+
+        <blog-post v-for="post in posts" :key="post.id" :title="post.title" :desc="post.desc"></blog-post>
+
+    </div>
+
+    <!-- template -->
+    <script type="text/x-template" id="blog-template">
+        <h3>{{ title }}</h3>
+        <h5>{{ desc }}</h5>
+    </script>
+    <!-- Vue CDN -->
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <!-- Vue app -->
+    <script>
+        const app = Vue.createApp({
+            data() {
+                return {
+                    posts: [{ 
+                            id: 1,
+                            title: 'My journey with Vue',
+                            desc: 'this is my journey learn vue js'
+                        },
+                        {
+                            id: 2,
+                            title: 'Blogging with Vue',
+                            desc: 'im blogging using vue js as a tools for blogging'
+                        },
+                        {
+                            id: 3,
+                            title: 'Why Vue is so fun',
+                            desc: 'this is some reason why vue is for fun'
+                        },
+                        {
+                            id: 4,
+                            title: 'is Vue better than react?',
+                            desc: 'this is why vue better than react'
+                        }
+                    ]
+                }
+            }
+        })
+
+        app.component('blog-post', {
+            props: ['title', 'desc'],
+            template: '#blog-template'
+        })
+
+        app.mount('#vueApp')
+    </script>
+</body>
+
+</html>
